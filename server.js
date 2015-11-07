@@ -33,6 +33,7 @@ app.post('/list', function(req, res){
 
 app.delete('/list/:id', function(req, res){
 	var item = req.params.id;
+	
 	db.pickup.remove({_id: mongojs.ObjectId(item)}, function (err, doc){
 		res.json(doc);
 	});

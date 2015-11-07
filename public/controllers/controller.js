@@ -1,53 +1,98 @@
-var pickUp = angular.module('pickUp', []);
+var pickUp = angular.module('pickUp', ['ui.router']);
 
-pickUp.controller('AppCtrl',['$scope', '$http',
-	function($scope, $http) {
-		console.log("Sup, I'm the app controller.");
+pickUp.config(['$stateProvider', '$urlRouterProvider',
+	function($stateProvider, $urlRouterProvider) {
 
-	var refresh = function() {
-		$http.get('/list').success(function(res){
-			console.log("got data. . .");
-			$scope.list = res;
-			$scope.items = '';
+		$stateProvider.state('/', {
+			url: '/',
+			templateUrl: 'views/list.html',
+			controller: 'AppCtrl',
+			resolve: {
+				itemPromise: ['list', function (list){
+					return list.getAll();
+				}]
+			}
 		});
-	};
 
-	refresh();
+		$urlRouterProvider.otherwise('/');
+
+}]);
+
+pickUp.factory('list', ['$http',
+	function($http) {
+		var list = {
+			items: []
+		};
+
+		list.getAll = function() {
+			$http.get('/list').success(function(res){
+				console.log("got data from mongo. . .");
+				angular.copy(res, list.items);
+			});
+		};
+
+		list.addItem = function(item){
+			$http.post('/list', item).success(
+				function(response){
+					console.log(response._id);
+					list.items.push(response);
+				}
+			);
+		};
+
+		list.deleteItem = function (item){
+			console.log(item);
+			$http.delete('/list/' + item).success(
+				function(res){
+					list.getAll();
+				}
+			);
+		};
+
+		list.updateItem = function(item){
+			console.log(item._id);
+			// $http.put('/list/' + item._id, item).success(
+			// 	function(res){
+			// 		list.getAll();
+			// });
+		};
+
+		return list;
+}]);
+
+pickUp.controller('AppCtrl',['$scope', '$http', 'list',
+	function($scope, $http, list) {
+		console.log("controller. . .");
+	
+	$scope.list = list.items;
 
 	$scope.addItem = function(){
-		console.log($scope.item);
-		$http.post('/list', $scope.item).success(
-			function(response){
-				console.log(response);
-				refresh();
-			}
-		);
+		list.addItem($scope.item);
+		$scope.item = '';
 	};
 
-	$scope.deleteItem = function(item){
-		console.log(item);
-		$http.delete('/list/' + item).success(
-			function(res){
-				refresh();
-			}
-		);
+	$scope.deleteItem = function(id){
+		list.deleteItem(id);
 	};
 
 	$scope.editItem = function(item){
 		console.log("editing: " + item);
 		$http.get('/list/' + item).success(
 			function(response){
-				$scope.item = response;
+				if ($scope.item === undefined) {
+					$scope.item = response;
+				} else {
+					$scope.item = '';
+				};
+
 			}
 		);
 	};
 
-	$scope.updateItem = function(){
-		$http.put('/list/' + $scope.item._id, $scope.item).success(
-			function(res){
-				refresh();
-				$scope.item = '';
-			});
+	$scope.updateItem = function (){
+		list.updateItem($scope.item);
+		$scope.item = '';
 	};
+
 
 }]);
