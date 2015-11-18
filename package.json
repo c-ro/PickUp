@@ -8,5 +8,12 @@
     "start": "node server.js"
   },
   "author": "Carl Overton",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "express": "^4.13.3",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.2.6",
+    "ng-dialog": "^0.5.5"
+  }
 }
