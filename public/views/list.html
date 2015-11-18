@@ -9,34 +9,22 @@
 </div>
 
 <table class="table">
-	<thead>
-		<tr>
-			<th>name</th>
-			<th>qty</th>
-			<th>unit price</th>
-			<th>subtotal</th>
-			<th>action</th>
-			<th>&nbsp</th>
-		</tr>
+	<tr>
+		<th colspan="6">
+			<input ng-model="item.name" placeholder="  name"></input>
+			<input ng-model="item.qty" placeholder=" qty"></input>
+			<input ng-model="item.price" placeholder="  price"></input>
+		</th>
+		<th colspan="1"><button ng-model="item" ng-click="addItem(item)">+</button></th>
 
-		<tr>
-			<form>
-			<td><input class="form-control" placeholder="name" ng-model="item.name"></td>
-			<td><input class="form-control" placeholder="qty" ng-model="item.qty"></td>
-			<td><input class="form-control" placeholder="price" ng-model="item.price"></td>
-			<td ng-model="item">{{item.qty * item.price || 0}}</td>
-			<td><button class="btn btn-primary" ng-click="addItem()" type="submit" id="submit">add</button></td>
-			<td><button class="btn btn-info" ng-click="updateItem()">edit</button></td>
-			</form>
-		</tr>
-
-		<tr ng-repeat="item in list">
-			<td>{{item.name}}</td>
-			<td>{{item.qty}}</td>
-			<td>{{item.price}}</td>
-			<td>{{item.qty * item.price}}</td>
-			<td><button class="btn btn-danger" ng-click="deleteItem(item._id)">del</button></td>
-			<td><button class="btn btn-warning" ng-click="editItem(item)">edit</button></td>
-		</tr>
-	</thead>
+	</tr>
+	<tr ng-repeat="item in list">
+		<td ng-click="inputDialog(item)">{{item.name}}</td>
+		<td>{{item.qty}}</td>
+		<td>{{item.price}}</td>
+		<td>{{item.qty * item.price}}</td>
+		<td><button class="btn btn-danger" ng-click="deleteItem(item._id)">del</button></td>
+		<td><button class="btn btn-warning" ng-click="inputDialog(item)">edit</button></td>
+		<td><button class="btn btn-success" ng-click="purchaseItem(item)">$</button></td>
+	</tr>
 </table>

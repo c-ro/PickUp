@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
-// var db = mongojs('pickup', ['pickup']);
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 mongoose.connect('mongodb://localhost/items', function(err) {
     if (err) {
@@ -13,13 +13,22 @@ mongoose.connect('mongodb://localhost/items', function(err) {
     }
 });
 
-var Item = mongoose.model('Item', { name: { type: String, required: true}, price: { type: Number, min: 0, required: true }, qty: {type: Number, min: 1, required: false } });
+var itemSchema = new Schema({
+	name: { type: String, required: true},
+	price: { type: Number, min: 0, required: true },
+	qty: {type: Number, min: 1, required: false },
+	purchases: [{date: { type: Date, default: Date.now }, qty: Number, price: Number}]
+});
+
+var Item = mongoose.model('Item', itemSchema);
 
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/scripts"));
+app.use(express.static(__dirname + "/vendor"));
+
 app.use(bodyParser.json());
 
 app.get('/list', function (req, res) {
-	console.log("GET request for ALL items . .");
 	Item.find(function (err, docs){
 		console.log(docs);
 		res.json(docs);
@@ -27,7 +36,6 @@ app.get('/list', function (req, res) {
 });
 
 app.get('/list/:id', function (req, res) {
-	console.log("GET request for single item. . ." + JSON.stringify(req.params));
 	var item = req.params.id;
 	console.log(item);
 
@@ -41,7 +49,6 @@ app.get('/list/:id', function (req, res) {
 });
 
 app.post('/list', function(req, res){
-	console.log("POST request for single item. . ." + req.body);
 	var item = new Item(req.body);
 
 	item.save(req.body, function (err, item){
@@ -54,7 +61,6 @@ app.post('/list', function(req, res){
 });
 
 app.delete('/list/:id', function(req, res){
-	console.log("DELETE request for single item. . .");
 	var item = req.params.id;
 
 	Item.remove({"_id": item}, function (err, item){
@@ -63,25 +69,35 @@ app.delete('/list/:id', function(req, res){
 });
 
 app.put('/list/:id', function (req, res) {
-    var newItem = new Item({
-        name: req.body.name,
-        price: req.body.price,
-        qty: req.body.qty
-    });
 
-    var upsertData = newItem.toObject();
+	Item.findByIdAndUpdate(req.params.id, {$set: req.body}, function(err, item){
+		if (err){
+			console.log(err);
+		}
 
-    delete upsertData._id;
+		res.send(item);
+	});
+});
 
-    return Item.update({ "_id": req.params.id }, upsertData, {upsert: true}, function(err) {
-          if (!err) {
-              return res.send("updated");
-          } else {
-              console.log(err);
-              return res.send(404, { error: "Item was not updated." });
-          }
-    });
+app.put('/list/purchase/:id', function (req, res) {
+	Item.findByIdAndUpdate(req.params.id, {$push: {"purchases": req.body}},  {safe: true, upsert: true, new : true}, function(err, item){
+		
+		if (err){
+			console.log(err);
+		}
+
+		res.send(item);
+	});
+});
+
+app.put('/purchase/remove/:id/:date', function(req, res){
+	Item.update( {"_id": req.params.id}, { $pull: { purchases: { date: req.params.date } } }, function (err, item){
+		res.json(item);
+	});
 });
 
 app.listen(3000);
-console.log("server running on 3k");
+
+var time = new Date();
+time = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+console.log(time + " server running on 3k");
