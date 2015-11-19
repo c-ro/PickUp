@@ -16,5 +16,8 @@
     "mongo": "^0.1.0",
     "mongoose": "^4.2.6",
     "ng-dialog": "^0.5.5"
+  },
+    "engines": {
+    "node": "0.12.7"
   }
 }
