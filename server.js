@@ -96,7 +96,7 @@ app.put('/purchase/remove/:id/:date', function(req, res){
 	});
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 5000);
 
 var time = new Date();
 time = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
