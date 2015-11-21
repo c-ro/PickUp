@@ -42,7 +42,7 @@
 			newScope.item = item;
 		
 		ngDialog.openConfirm({
-			template: 'views/popup.html',
+			template: 'views/edit-dialog.html',
 			scope: newScope
 		}).then(function(res){
 			if(res){

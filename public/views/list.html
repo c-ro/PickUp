@@ -4,27 +4,15 @@
       <div ng-transclude></div>
     </div>
   </script>
-
   <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
 </div>
 
 <table class="table">
 	<tr>
-		<th colspan="6">
-			<input ng-model="item.name" placeholder="  name"></input>
-			<input ng-model="item.qty" placeholder=" qty"></input>
-			<input ng-model="item.price" placeholder="  price"></input>
-		</th>
-		<th colspan="1"><button ng-model="item" ng-click="addItem(item)">+</button></th>
-
+		<th class="crossout">&nbsp</th>
+		<th>item</th>
+		<th>subtotal</th>
+		<th colspan="2">&#8988 actions &#8989</th>
 	</tr>
-	<tr ng-repeat="item in list">
-		<td ng-click="inputDialog(item)">{{item.name}}</td>
-		<td>{{item.qty}}</td>
-		<td>{{item.price}}</td>
-		<td>{{item.qty * item.price}}</td>
-		<td><button class="btn btn-danger" ng-click="deleteItem(item._id)">del</button></td>
-		<td><button class="btn btn-warning" ng-click="inputDialog(item)">edit</button></td>
-		<td><button class="btn btn-success" ng-click="purchaseItem(item)">$</button></td>
-	</tr>
+	<tr ng-repeat="item in list | orderBy: 'price * qty' " item></tr>
 </table>
