@@ -12,11 +12,12 @@ angular.module('pickUp').factory('list', ['$http', 'alerts',
 		};
 
 		list.addItem = function(item){
+			console.log(item);
 			$http.post('/list', item).success(
 				function(error, response){
 					if (error.message) {
-						console.log(error.message);
-						alerts.open(error.message + " -- NAME and PRICE required.", "danger");
+						console.log(error.errors);
+						alerts.open(error.errors);
 					} else {
 						list.items.push(response);
 						list.getAll();

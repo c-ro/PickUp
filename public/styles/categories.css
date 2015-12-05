@@ -5,44 +5,55 @@
 
 .meat {
     background-color: #FF9F8E;
+    border-bottom: 5px solid #FF9F8E;
 }
 
 .produce {
     background-color: #75D395;
+    border-bottom: 4px solid #75D395;
 }
 
 .bakery {
     background-color: #FFC88E;
+    border-bottom: 4px solid #FFC88E;
 }
 
 .dryandcanned {
     background-color: lemonchiffon;
+    border-bottom: 4px solid lemonchiffon;
 }
 
 .dairy {
     background-color: cornflowerblue;
+    border-bottom: 4px solid cornflowerblue;
 }
 
 .pets {
     background-color: brown;
+    border-bottom: 4px solid brown;
 }
 
 .personal {
     background-color: mistyrose;
+    border-bottom: 4px solid mistyrose;
 }
 
 .beverages {
     background-color: thistle;
+    border-bottom: 4px solid thistle;
 }
 
 .frozen {
     background-color: powderBlue;
+    border-bottom: 4px solid powderBlue;
 } 
 
 .home {
     background-color: MediumTurquoise;
+    border-bottom: 4px solid MediumTurquoise;
 }
 
 .none {
     background-color: whitesmoke;
+    border-bottom: 4px solid whitesmoke; 
 }

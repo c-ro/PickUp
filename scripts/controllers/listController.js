@@ -8,11 +8,20 @@
 
 	$scope.alerts = alerts;
 
-	$scope.addItem = function(){
+	$scope.listTotal = function(){
+		var sum = 0;
 
-		console.log("add");
+		for(var i = 0; i < list.items.length; i++){
+			sum = sum + (list.items[i].price * list.items[i].qty);
+		}
+		
+		return sum;
+	};
+
+	$scope.addItem = function(){
 		list.addItem($scope.item);
 
+		ngDialog.closeAll();
 		$scope.item = '';
 	};
 
@@ -37,7 +46,7 @@
 		alerts.close(index);
 	};
 
-	$scope.inputDialog = function (item) {
+	$scope.editDialog = function (item) {
 		var newScope = $scope.$new();
 			newScope.item = item;
 		
@@ -49,6 +58,18 @@
 				list.updateItem(item);
 			}
 		});
+	};
+
+	$scope.inputDialog = function() {
+		$scope.item = {};
+
+		ngDialog.openConfirm({
+			template: 'views/input-dialog.html',
+			scope: $scope
+		});
+		// .then(function(res){
+		// 	console.log(res);
+		// });
 	};
 
 	$scope.purchaseItem = function(item){

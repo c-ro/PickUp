@@ -1,3 +1,24 @@
+<table class="table">
+	<tr>
+		<th class="hideCart" ng-click="hideCart()">hide</th>
+		<th>item</th>
+		<th>subtotal</th>
+		<th colspan="2">&#8988 actions &#8989</th>
+	</tr>
+	<tr item ng-repeat="item in list | orderBy: ['category','price * qty'] " ng-class="item.category || 'none'"></tr>
+	<tr>
+		<td colspan="1">total:</td>
+		<td colspan="1"></td>
+		<td colspan="1">{{listTotal() | currency}}</td>
+		<td colspan="1"></td>
+	</tr>
+	<tr>
+		<td colspan="4" ng-click="inputDialog()">
+			<button class="btn btn-block">add some things, yo</button>
+		</td>
+	</tr>
+</table>
+
 <div>
   <script type="text/ng-template" id="alert.html">
     <div class="alert" style="background-color:#fa39c3;color:white" role="alert">
@@ -6,13 +27,3 @@
   </script>
   <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
 </div>
-
-<table class="table">
-	<tr>
-		<th class="hideCart" ng-click="hideCart()">hide</th>
-		<th>item</th>
-		<th>subtotal</th>
-		<th colspan="2">&#8988 actions &#8989</th>
-	</tr>
-	<tr item ng-repeat="item in list | orderBy: 'price * qty' " ng-class="item.category || 'none'"></tr>
-</table>

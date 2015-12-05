@@ -19,8 +19,6 @@ angular.module('pickUp')
 
 		};
 
-
-
 		$(crossout).on('click', strikeOut);
 	};
 
