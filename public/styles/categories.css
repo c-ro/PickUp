@@ -1,0 +1,48 @@
+.strikeout {
+    background-color: Gainsboro;
+    text-decoration: line-through;
+}
+
+.meat {
+    background-color: #FF9F8E;
+}
+
+.produce {
+    background-color: #75D395;
+}
+
+.bakery {
+    background-color: #FFC88E;
+}
+
+.dryandcanned {
+    background-color: lemonchiffon;
+}
+
+.dairy {
+    background-color: cornflowerblue;
+}
+
+.pets {
+    background-color: brown;
+}
+
+.personal {
+    background-color: mistyrose;
+}
+
+.beverages {
+    background-color: thistle;
+}
+
+.frozen {
+    background-color: powderBlue;
+} 
+
+.home {
+    background-color: MediumTurquoise;
+}
+
+.none {
+    background-color: whitesmoke;
+}

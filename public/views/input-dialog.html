@@ -6,20 +6,38 @@
 		<td ng-model="item"> Subtotal: {{item.qty * item.price || 0}}</td>
 	</form>
 </div>
+
+<div class="form-group">
+    <div>
+      <select id="selectcategory" name="selectcategory" class="form-control">
+        <option value="none">category</option>
+        <option value="meat">meat</option>
+        <option value="produce">produce</option>
+        <option value="frozen">frozen</option>
+        <option value="beverages">beverages</option>
+        <option value="dryandcanned">dryandcanned</option>
+        <option value="personal">personal</option>
+        <option value="home">home</option>
+        <option value="pets">pets</option>
+        <option value="bakery">bakery</option>
+      </select>
+    </div>
+ </div>
+
 <div class="ngdialog-buttons">
     <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Cancel</button>
     <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('Save')">Save</button>
 </div>
 
-		<tr>
-			<th colspan="6">
-				<input ng-model="item.name" placeholder="  name"></input>
-				<input ng-model="item.qty" placeholder=" qty"></input>
-				<input ng-model="item.price" placeholder="  price"></input>
-			</th>
-			<th colspan="1"><button class="btn-default" ng-model="item" ng-click="addItem(item)">add item</button></th>
+<tr>
+	<th colspan="6">
+		<input ng-model="item.name" placeholder="  name"></input>
+		<input ng-model="item.qty" placeholder=" qty"></input>
+		<input ng-model="item.price" placeholder="  price"></input>
+	</th>
+	<th colspan="1"><button class="btn-default" ng-model="item" ng-click="addItem(item)">add item</button></th>
 
-		</tr>
+</tr>
 		
 <!-- <div>
 	<table class="table" ng-model="item">

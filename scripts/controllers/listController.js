@@ -73,4 +73,23 @@
 		list.deletePurchase(purchase);
 	};
 
+	$scope.cart = [];
+
+	$scope.toggleCart = function (item){
+		var index = $scope.cart.indexOf(item);
+		if(index === -1){
+			$scope.cart.push(item);
+		} else {
+			$scope.cart.splice(index, 1);
+		}
+	};
+
+	$scope.inCart = function (item) {
+		return $scope.cart.indexOf(item) > -1;
+	};
+
+	$scope.hideCart = function(){
+		//hide that shit, man.
+	}
+
 }]);

@@ -9,10 +9,10 @@
 
 <table class="table">
 	<tr>
-		<th class="crossout">&nbsp</th>
+		<th class="hideCart" ng-click="hideCart()">hide</th>
 		<th>item</th>
 		<th>subtotal</th>
 		<th colspan="2">&#8988 actions &#8989</th>
 	</tr>
-	<tr ng-repeat="item in list | orderBy: 'price * qty' " item></tr>
+	<tr item ng-repeat="item in list | orderBy: 'price * qty' " ng-class="item.category || 'none'"></tr>
 </table>
