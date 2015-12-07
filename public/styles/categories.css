@@ -1,6 +1,12 @@
 .strikeout {
     background-color: Gainsboro;
+    color: #aaa;
     text-decoration: line-through;
+    transition: background-color 0.25s ease-in;
+    transition: color 0.25s ease;
+}
+
+.crossout {
 }
 
 .meat {

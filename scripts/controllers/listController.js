@@ -8,11 +8,11 @@
 
 	$scope.alerts = alerts;
 
-	$scope.listTotal = function(){
+	$scope.listTotal = function(arr){
 		var sum = 0;
 
-		for(var i = 0; i < list.items.length; i++){
-			sum = sum + (list.items[i].price * list.items[i].qty);
+		for(var i = 0; i < arr.length; i++){
+			sum = sum + (arr[i].price * arr[i].qty);
 		}
 		
 		return sum;
@@ -95,6 +95,7 @@
 	};
 
 	$scope.cart = [];
+	$scope.hideCart = true;
 
 	$scope.toggleCart = function (item){
 		var index = $scope.cart.indexOf(item);
@@ -103,14 +104,11 @@
 		} else {
 			$scope.cart.splice(index, 1);
 		}
+		$scope.$apply();
 	};
 
 	$scope.inCart = function (item) {
 		return $scope.cart.indexOf(item) > -1;
 	};
-
-	$scope.hideCart = function(){
-		//hide that shit, man.
-	}
 
 }]);

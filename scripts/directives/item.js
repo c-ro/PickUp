@@ -1,5 +1,5 @@
 angular.module('pickUp')
-.directive('item', function(){
+.directive('item', ['$animate', function($animate){
 	
 	var itemFunc = function(scope, element, attrs){
 		var crossout = angular.element(element.children()[0]);
@@ -31,4 +31,4 @@ angular.module('pickUp')
 
 	return directive;
 
-});
+}]);
