@@ -1,6 +1,6 @@
 <table class="table">
 	<tr>
-		<th ng-click="hideCart = !hideCart">hide</th>
+		<th ng-click="hideCart = !hideCart">{{ hideCart ? "hide" : "show" }} cart</th>
 		<th>item</th>
 		<th>subtotal</th>
 		<th colspan="2">&#8988 actions &#8989</th>
@@ -9,7 +9,7 @@
 	<tr>
 		<td colspan="1">list total:<br>{{ listTotal(list) | currency}}</td>
 		<td colspan="1">cart total:<br>{{ listTotal(cart) | currency}}</td>
-		<td colspan="1">list - cart:<br>{{ listTotal(list) - listTotal(cart) | currency }}</td>
+		<td colspan="1">remaining:<br>{{ listTotal(list) - listTotal(cart) | currency }}</td>
 		<td colspan="1"></td>
 	</tr>
 	<tr>
