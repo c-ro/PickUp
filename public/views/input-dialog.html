@@ -1,29 +1,33 @@
-<form>
-	<div class="ngdialog-message input-dialog" ng-controller="AppCtrl">
-	<form>
-		<td><input class="form-control" placeholder="name" ng-model="item.name"></td>
-		<td><input class="form-control" placeholder="qty" ng-model="item.qty"></td>
-		<td><input class="form-control" placeholder="price" ng-model="item.price"></td>
-		<td ng-model="item"> Subtotal: {{item.qty * item.price || 0}}</td>
-	</form>
-</div>
+<div id="input">
+    <form>
 
-<div class="btn-group"  id="labels-container" data-toggle="buttons-checkbox">
-    <div>
-        <button class="category-label meat" ng-model="item.category" uib-btn-radio="'meat'">meat</button>
-        <button class="category-label produce" ng-model="item.category" uib-btn-radio="'produce'">produce</button>
-        <button class="category-label frozen" ng-model="item.category" uib-btn-radio="'frozen'">frozen</button>
-        <button class="category-label beverages" ng-model="item.category" uib-btn-radio="'beverages'">beverages</button>
-        <button class="category-label dryandcanned" ng-model="item.category" uib-btn-radio="'dryandcanned'">dry/canned</button>
-        <button class="category-label personal" ng-model="item.category" uib-btn-radio="'personal'">personal</button>
-        <button class="category-label home" ng-model="item.category" uib-btn-radio="'home'">home</button>
-        <button class="category-label pets" ng-model="item.category" uib-btn-radio="'pets'">pets</button>
-        <button class="category-label bakery" ng-model="item.category" uib-btn-radio="'bakery'">bakery</button>
+	<div ng-controller="AppCtrl">
+    	<form class="input-group">
+    		<td><input class="form-control" placeholder="name" ng-model="item.name"></td>
+    		<td><input class="form-control" placeholder="qty" ng-model="item.qty"></td>
+    		<td><input class="form-control" placeholder="price" ng-model="item.price"></td>
+    		<td ng-model="item"> Subtotal: {{item.qty * item.price || 0}}</td>
+    	</form>
     </div>
-</div>
 
-<div class="ngdialog-buttons">
-    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Cancel</button>
-    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="addItem(item)">Save</button> <!-- confirm('Save') -->
+    <div class="btn-group"  id="labels-container" data-toggle="buttons-checkbox">
+        <div>
+            <button class="category-label meat" ng-model="item.category" uib-btn-radio="'meat'">meat</button>
+            <button class="category-label produce" ng-model="item.category" uib-btn-radio="'produce'">produce</button>
+            <button class="category-label frozen" ng-model="item.category" uib-btn-radio="'frozen'">frozen</button>
+            <button class="category-label beverages" ng-model="item.category" uib-btn-radio="'beverages'">beverages</button>
+            <button class="category-label dryandcanned" ng-model="item.category" uib-btn-radio="'dryandcanned'">dry/canned</button>
+            <button class="category-label personal" ng-model="item.category" uib-btn-radio="'personal'">personal</button>
+            <button class="category-label home" ng-model="item.category" uib-btn-radio="'home'">home</button>
+            <button class="category-label pets" ng-model="item.category" uib-btn-radio="'pets'">pets</button>
+            <button class="category-label bakery" ng-model="item.category" uib-btn-radio="'bakery'">bakery</button>
+        </div>
+    </div>
+
+    <div class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="addItem(item)">Save</button> <!-- confirm('Save') -->
+    </div>
+    
+    </form>
 </div>
-</form>

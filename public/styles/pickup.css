@@ -508,3 +508,7 @@ table {
 	margin-right: auto;
 	margin-left: auto;
 }
+
+.ngdialog-content {
+    max-width: 450px !important;
+}
