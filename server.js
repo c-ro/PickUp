@@ -8,9 +8,15 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
-require('./routes.js')(app);
 
 //CONFIG
+app.use(bodyParser.json());
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/scripts"));
+app.use(express.static(__dirname + "/vendor"));
+
+require('./routes.js')(app);
+
 var database = require('./config/database');
 mongoose.connect(database.url, function(err) {
     if (err) {
@@ -19,11 +25,6 @@ mongoose.connect(database.url, function(err) {
         console.log('Connected. . .');
     }
 });
-
-app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/scripts"));
-app.use(express.static(__dirname + "/vendor"));
-app.use(bodyParser.json());
 
 // MODELS
 var Item = require('./scripts/models/Items.js');

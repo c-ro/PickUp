@@ -12,7 +12,7 @@ angular.module('pickUp').factory('list', ['$http', 'alerts',
 		};
 
 		list.addItem = function(item){
-			console.log(item);
+			// console.log("service: " + JSON.stringify(item));
 			$http.post('/list', item).success(
 				function(error, response){
 					if (error.message) {
