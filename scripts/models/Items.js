@@ -1,14 +1,12 @@
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-// var ItemSchema = new  mongoose.Schema({
-// 	name: String,
-// 	qty: {type: Number, default: 1},
-// 	units: String,
-// 	price: {type: Number, default: 0},
-// 	category: String,
-// 	purchases: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Purchase' }]
-// });
+var itemSchema = new Schema({
+	name: { type: String, required: true},
+	price: { type: Number, min: 0, required: true },
+	qty: {type: Number, min: 1, required: false },
+	category: {type: String, enum: ["meat", "produce", "bakery", "dryandcanned", "dairy", "pets", "personal", "beverages", "frozen", "home", "none"] },
+	purchases: [{date: { type: Date, default: Date.now }, qty: Number, price: Number}]
+});
 
-// ItemSchema.methods.edit = function(cb){
-// 	this.save(cb);
-// };
+module.exports = mongoose.model('Item', itemSchema);
