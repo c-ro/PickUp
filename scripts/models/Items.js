@@ -3,9 +3,10 @@ var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({
 	name: { type: String, required: true},
-	price: { type: Number, min: 0, required: true },
-	qty: {type: Number, min: 1, required: false },
-	category: {type: String, enum: ["meat", "produce", "bakery", "dryandcanned", "dairy", "pets", "personal", "beverages", "frozen", "home", "none"] },
+	price: { type: Number, default: 0, required: false },
+	qty: {type: Number, default: 1, required: false },
+	coupon: { type : Boolean, default: false },
+	category: {type: String, default: 'none', enum: ["meat", "produce", "bakery", "dryandcanned", "dairy", "pets", "personal", "beverages", "frozen", "home", "none"] },
 	purchases: [{date: { type: Date, default: Date.now }, qty: Number, price: Number}]
 });
 

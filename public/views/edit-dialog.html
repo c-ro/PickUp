@@ -7,20 +7,17 @@
 	</form>
 </div>
 
-<div class="form-group">
+<div class="btn-group"  id="labels-container" data-toggle="buttons-checkbox">
     <div>
-      <select id="selectcategory" name="selectcategory" class="form-control" ng-model="item.category">
-        <option value="none">category</option>
-        <option value="meat">meat</option>
-        <option value="produce">produce</option>
-        <option value="frozen">frozen</option>
-        <option value="beverages">beverages</option>
-        <option value="dryandcanned">dryandcanned</option>
-        <option value="personal">personal</option>
-        <option value="home">home</option>
-        <option value="pets">pets</option>
-        <option value="bakery">bakery</option>
-      </select>
+        <button class="category-label meat" ng-model="item.category" uib-btn-radio="'meat'">meat</button>
+        <button class="category-label produce" ng-model="item.category" uib-btn-radio="'produce'">produce</button>
+        <button class="category-label frozen" ng-model="item.category" uib-btn-radio="'frozen'">frozen</button>
+        <button class="category-label beverages" ng-model="item.category" uib-btn-radio="'beverages'">beverages</button>
+        <button class="category-label dryandcanned" ng-model="item.category" uib-btn-radio="'dryandcanned'">dry/canned</button>
+        <button class="category-label personal" ng-model="item.category" uib-btn-radio="'personal'">personal</button>
+        <button class="category-label home" ng-model="item.category" uib-btn-radio="'home'">home</button>
+        <button class="category-label pets" ng-model="item.category" uib-btn-radio="'pets'">pets</button>
+        <button class="category-label bakery" ng-model="item.category" uib-btn-radio="'bakery'">bakery</button>
     </div>
 </div>
 
