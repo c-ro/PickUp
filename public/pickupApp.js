@@ -3,13 +3,23 @@ angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 .config(['$stateProvider', '$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider) {
 
-		$stateProvider.state('/', {
+		$stateProvider
+		.state('/', {
 			url: '/',
-			templateUrl: 'views/list.html',
-			controller: 'AppCtrl',
+			templateUrl: 'views/lists.html',
+			controller: 'ListsCtrl',
 			resolve: {
-				itemPromise: ['list', function (list){
-					return list.getAll();
+				listPromise: ['lists', function (lists){
+					return lists.getAll();
+				}]
+			}
+		}).state('/items', {
+			url: '/items.html',
+			templateUrl: 'views/items.html',
+			controller: 'ItemsCtrl',
+			resolve: {
+				itemPromise: ['items', function (items){
+					return items.getAll();
 				}]
 			}
 		});

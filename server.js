@@ -27,8 +27,8 @@ mongoose.connect(database.url, function(err) {
 });
 
 // MODELS
-var Item = require('./scripts/models/Items.js');
-// var List = require('./scripts/models.Lists.js');
+// var Item = require('./scripts/models/Items.js');
+// var List = require('./scripts/models/Lists.js');
 
 app.listen(port);
 console.log(time + " -- server running on %s", port);

@@ -1,11 +1,14 @@
-// // var mongoose = require('mongoose');
-// var Schema = mongoose.Schema;
+var date = new Date();
+var datestring = ("0" + (date.getMonth() + 1).toString()).substr(-2) + "/" + ("0" + date.getDate().toString()).substr(-2)  + "/" + (date.getFullYear().toString()).substr(2);
 
-// var listSchema = new Schema({
-// 	dateCreated: { type: Date, default: Date.now },
-// 	listName: { type: String, default: datestring + " List" },
-// 	items: [{itemId: item._id}],//HOW GET ID CARL?
-// 	complete: { type: Boolean, default: false }
-// });
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-// mongoose.exports = mongoose.model('List', listSchema);
+var listSchema = new Schema({
+	// date: { type: Date, default: Date.now },
+	name: { type: String, default: datestring + " List" },
+	// items: [{type: Number, default}], //{itemId: item._id} ???
+	// complete: { type: Boolean, default: false }
+});
+
+mongoose.exports = mongoose.model('List', listSchema);
