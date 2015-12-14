@@ -1,10 +1,10 @@
  angular.module('pickUp')
 
-.controller('ListsCtrl', ['$scope', '$http', 'ngDialog', 'lists',
-
-	function($scope, $http, ngDialog, lists) {
-
+.controller('ListsCtrl', ['$scope', '$http', 'ngDialog', 'lists', 'alerts',
+	function($scope, $http, ngDialog, lists, alerts) {
+	console.log("controller loaded");
 	$scope.lists = lists.lists;
+
 	// $scope.listTotal = function(arr){
 	// 	var sum = 0;
 
@@ -22,14 +22,13 @@
 		$scope.list = '';
 	};
 
-	// $scope.deleteItem = function(id){
-	// 	if(confirm("you sure?")){
-	// 		console.log("delete");
-	// 		items.deleteItem(id);
-	// 	} else {
-	// 		items.getAll();
-	// 	}
-	// };
+	$scope.deleteList = function(list){
+		if(confirm("you sure?")){
+			lists.deleteList(list._id);
+		} else {
+			lists.getAll();
+		}
+	};
 
 	// $scope.editItem = function(item){
 	// 	items.getItem(item._id, function(response){
@@ -111,5 +110,18 @@
 	// $scope.inCart = function (item) {
 	// 	return $scope.cart.indexOf(item) > -1;
 	// };
+
+}])
+.controller('ListCtrl', ['$scope', '$http', 'ngDialog', 'list',
+	function($scope, $http, ngDialog, list){
+	console.log('SINGLE LIST');
+		$scope.list = list;
+		$scope.items = list.items;
+		console.log($scope.items);
+		// $scope.addItemToList = function(){
+		
+		// };
+
+
 
 }]);

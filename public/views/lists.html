@@ -1,11 +1,11 @@
 <table class="table main-table">
 	<tr>
 		<th>List Name</th>
+		<th>List ID</th>		
 	</tr>
+	<!-- LIST DIRECTIVE -->
 	<tr list ng-repeat="list in lists"></tr>
-	<tr>
-		<td>bottom</td>
-	</tr>
+	
 	<tr>
 		<td colspan="6" ng-click="newListDialog()">
 			<button class="btn btn-block">new list</button>

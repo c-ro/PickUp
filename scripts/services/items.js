@@ -26,7 +26,9 @@ angular.module('pickUp').factory('items', ['$http', 'alerts',
 		};
 
 		items.getItem = function(id, response){
-			return $http.get('/items/' + id).success(response);
+			$http.get('/items/' + id).success(function(response){
+				console.log(response);
+			});
 		};
 
 		items.deleteItem = function (item){

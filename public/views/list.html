@@ -1,0 +1,13 @@
+<div class="container">
+<h3 class="list-header">{{ list.name }}</h3>
+<table class="table table-condensed">
+	<tr item ng-repeat="item in items"></tr>
+	<tr>
+		<td>
+			<form>
+			<button class="btn" ng-click="addItemToList()">Add to List</button>
+			</form>
+		</td>
+	</tr>
+</table>
+</div>

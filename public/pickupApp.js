@@ -4,26 +4,39 @@ angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 	function($stateProvider, $urlRouterProvider) {
 
 		$stateProvider
-		.state('/', {
-			url: '/',
+		.state('lists', {
+			url: '/lists',
 			templateUrl: 'views/lists.html',
 			controller: 'ListsCtrl',
 			resolve: {
-				listPromise: ['lists', function (lists){
+				listsPromise: ['lists', function (lists){
+					console.log('LISTS State');
 					return lists.getAll();
 				}]
 			}
-		}).state('/items', {
-			url: '/items.html',
+		})
+		.state('list', {
+			url: '/lists/{id}',
+			templateUrl: 'views/list.html',
+			controller: 'ListCtrl',
+			resolve: {
+				list: ['$stateParams', 'lists', function($stateParams, lists) {
+					console.log('LIST id: ', $stateParams.id);
+					return lists.getList($stateParams.id);
+				}]
+			},
+		})
+		.state('items', {
+			url: '/items',
 			templateUrl: 'views/items.html',
 			controller: 'ItemsCtrl',
 			resolve: {
-				itemPromise: ['items', function (items){
+				itemsPromise: ['items', function (items){
 					return items.getAll();
 				}]
 			}
 		});
 
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/lists');
 
 }]);

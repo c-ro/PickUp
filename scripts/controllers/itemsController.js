@@ -1,8 +1,8 @@
  angular.module('pickUp')
 
-.controller('ItemsCtrl', ['$scope', '$http', 'ngDialog', 'items', 'alerts',
+.controller('ItemsCtrl', ['$scope', '$http', 'ngDialog', 'items', 'alerts', 'lists',
 
-	function($scope, $http, ngDialog, items, alerts) {
+	function($scope, $http, ngDialog, items, alerts, lists) {
 
 	$scope.items = items.items;
 
@@ -113,6 +113,14 @@
 
 	$scope.inCart = function (item) {
 		return $scope.cart.indexOf(item) > -1;
+	};
+
+	$scope.addToList = function(item, list){
+		var targetList = '566c97c32dc1801bdf547983' || list;
+	
+		lists.addItemToList(item, targetList, function(res){
+			console.log(item);
+		});
 	};
 
 }]);

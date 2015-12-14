@@ -1,1 +1,9 @@
-<td>{{ list.name }} list directive template</td>
+<td>
+	<a ui-sref='list({id: list._id})'>{{ list.name }}</a>
+</td>
+<td>
+	{{ list._id }}
+</td>
+<td ng-click="deleteList(list)">
+	X
+</td>

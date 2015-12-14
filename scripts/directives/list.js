@@ -25,8 +25,9 @@ angular.module('pickUp')
 	var directive = {
 		restrict: 'EA',
 		scope: "=name",
-		templateUrl: 'views/listDirective.html',
-		link: listFunc
+		templateUrl: 'views/listDirective.html'
+		// ,
+		// link: listFunc
 	};
 
 	return directive;
