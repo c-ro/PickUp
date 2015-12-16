@@ -116,7 +116,7 @@
 	};
 
 	$scope.addToList = function(item, list){
-		var targetList = '566c97c32dc1801bdf547983' || list;
+		var targetList = '5670ae6c28563cb91099a3be' || list;
 	
 		lists.addItemToList(item, targetList, function(res){
 			console.log(item);

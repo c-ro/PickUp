@@ -117,6 +117,7 @@
 	console.log('SINGLE LIST');
 		$scope.list = list;
 		$scope.items = list.items;
+		
 		console.log($scope.items);
 		// $scope.addItemToList = function(){
 		

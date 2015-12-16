@@ -1,5 +1,5 @@
 <td class="crossout" ng-click="crossout()">&#x02A00</td>
-<td ng-click="editDialog(item)">{{item.name}}</td>
+<td ng-click="editDialog(item)">{{item.name || item}}</td>
 <!-- <td>{{item.qty}}</td>
 <td>{{item.price}}</td> -->
 <td>{{item.qty * item.price | currency}}</td>

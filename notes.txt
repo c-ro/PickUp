@@ -1,9 +1,0 @@
--create lists schema
--create lists routes
--create lists service
--create lists template
--create lists 
--change current list controller to items controller
--create lists controller
-
-

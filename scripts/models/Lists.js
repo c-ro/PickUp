@@ -8,7 +8,7 @@ var Schema = mongoose.Schema,
 var listSchema = new Schema({
 	date: { type: Date, default: Date.now },
 	name: { type: String, default: datestring + " List" },
-	items: [{type: ObjectId}], //, default}], //{itemId: item._id} ???
+	items: [{type: Schema.Types.ObjectId, ref: 'Item', required: true}],
 	complete: { type: Boolean, default: false }
 });
 

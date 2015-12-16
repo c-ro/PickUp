@@ -75,7 +75,6 @@ module.exports = function(app){
 	// GET LIST LIST
 	app.get('/lists', function (req, res, err) {
 		List.find(function (err, docs){
-			console.log("Docs: " + docs.length);
 			res.json(docs);
 		});
 	});
@@ -95,16 +94,18 @@ module.exports = function(app){
 	// GET SINGLE  LIST
 	app.get('/lists/:id', function (req, res) {
 		var list = req.params.id;
-		console.log("list");
-		List.findOne({'_id': list }, function(err, list){
-			if (err){
-				console.log("GET single list ERROR: " + err);
-			} else {
-				res.json(list);
-			}
+		console.log(list);
+		
+		List.findOne({ '_id': list })
+			.populate('items')
+			.exec(function (err, list) {
+				if (err){
+					return handleError(err);
+				} else {
+					res.json(list);
+				}
 		});
 	});
-
 	//DELETE SINGLE LISt
 	app.delete('/lists/:id', function(req, res){
 		var list = req.params.id;
