@@ -22,7 +22,6 @@ angular.module('pickUp')
 		$(crossout).on('click', strikeOut);
 
 		var hide = function() {
-			console.log("hide");
 			$(row).hide();
 		};
 
