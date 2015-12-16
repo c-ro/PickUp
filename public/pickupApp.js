@@ -37,6 +37,6 @@ angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 			}
 		});
 
-		// $urlRouterProvider.otherwise('/lists');
+		$urlRouterProvider.otherwise('/lists');
 
 }]);
