@@ -143,8 +143,4 @@
 			lists.removeItemFromList(item, $scope.list);
 		};
 
-
-
-
-
 }]);

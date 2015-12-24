@@ -110,12 +110,4 @@
 		return $scope.cart.indexOf(item) > -1;
 	};
 
-	$scope.addToList = function(item, list){
-		var targetList = list;
-
-		lists.addItemToList(item, targetList, function(res){
-			console.log("add to list");
-		});
-	};
-
 }]);
