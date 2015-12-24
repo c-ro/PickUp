@@ -523,3 +523,7 @@ table {
 .list-header {
     color: grey;
 }
+
+.ng-binding {
+    text-decoration: underline;
+}

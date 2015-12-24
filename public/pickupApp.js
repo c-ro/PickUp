@@ -10,7 +10,6 @@ angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 			controller: 'ListsCtrl',
 			resolve: {
 				listsPromise: ['lists', function (lists){
-					console.log('LISTS State');
 					return lists.getAll();
 				}]
 			}
@@ -21,8 +20,10 @@ angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 			controller: 'ListCtrl',
 			resolve: {
 				list: ['$stateParams', 'lists', function($stateParams, lists) {
-					console.log('LIST id: ', $stateParams.id);
 					return lists.getList($stateParams.id);
+				}],
+				itemsPromise: ['items', function (items){
+					return items.getAll();
 				}]
 			},
 		})

@@ -3,9 +3,7 @@
 	<tr item ng-repeat="item in items | orderBy: ['category','price * qty'] " ng-class="item.category || 'none'" ng-show="hideCart || !inCart(item)"></tr>
 	<tr>
 		<td>
-			<form>
-				<button class="btn" ui-sref="items">Add to List</button>
-			</form>
+			<button class="btn" ng-click="addToListDialog(list)">Add to List</button> <!-- ui-sref="items" -->
 		</td>
 	</tr>
 </table>

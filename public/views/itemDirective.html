@@ -2,9 +2,9 @@
 <td ng-click="editDialog(item)">{{item.name || item}}</td>
 <!-- <td>{{item.qty}}</td>
 <td>{{item.price}}</td> -->
-<td>{{item.qty * item.price | currency}}</td>
+<td ng-click="editDialog(item)">{{item.qty * item.price | currency}}</td>
 <td ng-click="deleteItem(item._id)">&#x02A2F</td>
-<td ng-click="removeItem(item._id)">-</td>
+<td ng-click="removeItemFromList(item)">-</td>
 <td ng-click="addToList(item)">+</td>
 <!-- <td ng-click="deleteItem(item._id)">&#x02A2F</td> -->
 <!-- <td ng-click="alert('farts')">></td> -->

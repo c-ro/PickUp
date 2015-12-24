@@ -2,9 +2,8 @@
 
 .controller('ListsCtrl', ['$scope', '$http', 'ngDialog', 'lists', 'alerts',
 	function($scope, $http, ngDialog, lists, alerts) {
-	console.log("controller loaded");
 	$scope.lists = lists.lists;
-
+	
 	// $scope.listTotal = function(arr){
 	// 	var sum = 0;
 
@@ -61,7 +60,7 @@
 	// };
 
 	$scope.newListDialog = function() {
-		$scope.item = {};
+		$scope.list = {};
 
 		ngDialog.openConfirm({
 			template: 'views/newListDialog.html',
@@ -112,16 +111,39 @@
 	// };
 
 }])
-.controller('ListCtrl', ['$scope', '$http', 'ngDialog', 'list',
-	function($scope, $http, ngDialog, list){
-	console.log('SINGLE LIST');
+.controller('ListCtrl', ['$scope', '$http', 'ngDialog', 'list', 'lists', 'items',
+	function($scope, $http, ngDialog, list, lists, items){
 		$scope.list = list;
 		$scope.items = list.items;
-		
-		console.log($scope.items);
+		$scope.newItems = items.items;
+
 		// $scope.addItemToList = function(){
-		
+		// 	lists.addItemToList(item, $scope.list);
+		// 	lists.getAll();
 		// };
+
+		$scope.addToListDialog = function(currentList){
+			console.log("editing " + list._id);
+			ngDialog.open({
+				template: 'views/add-to-list-dialog.html',
+				scope: $scope,
+				data: { list: currentList }
+			});
+		};
+
+		$scope.addToList = function(item){
+			var list = $scope.list._id;
+
+			lists.addItemToList(item, list, function(res){
+				console.log("add to list");
+			});
+		};
+
+		$scope.removeItemFromList = function(item){
+			lists.removeItemFromList(item, $scope.list);
+		};
+
+
 
 
 

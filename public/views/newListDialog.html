@@ -1,17 +1,16 @@
 <div id="input">
     <form>
+    	<div ng-controller="ListsCtrl">
+        	<form class="input-group">
+        		<td><input class="form-control" placeholder="name" ng-model="list.name"></td>
+                <pre>{{ list.name }}</pre>
+        	</form>
+        </div>
 
-	<div ng-controller="ListsCtrl">
-    	<form class="input-group">
-    		<td><input class="form-control" placeholder="name" ng-model="list.name"></td>
-            <pre>{{ list.name }}</pre>
-    	</form>
-    </div>
-
-    <div class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Cancel</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="addList(list)">Save</button> <!-- confirm('Save') -->
-    </div>
+        <div class="ngdialog-buttons">
+            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Cancel</button>
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="addList(list)">Save</button> <!-- confirm('Save') -->
+        </div>
     
     </form>
 </div>

@@ -1,12 +1,13 @@
  angular.module('pickUp')
 
-.controller('ItemsCtrl', ['$scope', '$http', 'ngDialog', 'items', 'alerts', 'lists',
+.controller('ItemsCtrl', ['$scope', '$http', '$filter', 'ngDialog', 'items', 'alerts', 'lists',
 
-	function($scope, $http, ngDialog, items, alerts, lists) {
-
-	$scope.items = items.items;
+	function($scope, $http, $filter, ngDialogs, items, alerts, lists) {
 
 	$scope.alerts = alerts;
+	$scope.items = items.items;
+
+	var orderBy = $filter('orderBy');
 
 	// $scope.listTotal = function(arr){
 	// 	var sum = 0;
@@ -71,21 +72,15 @@
 			template: 'views/input-dialog.html',
 			scope: $scope
 		});
-		// .then(function(res){
-		// 	console.log(res);
-		// });
 	};
 
 	$scope.purchaseItem = function(item){
-		console.log("purchase");
-
 		var doc = {
 			_id: item._id,
 				qty: item.qty,
 				price: item.price,
-			//store
+				//store: item.store << not currently in model
 		};
-
 		items.purchaseItem(doc);
 	};
 
@@ -116,10 +111,10 @@
 	};
 
 	$scope.addToList = function(item, list){
-		var targetList = '5670ae6c28563cb91099a3be' || list;
-	
+		var targetList = list;
+
 		lists.addItemToList(item, targetList, function(res){
-			console.log(item);
+			console.log("add to list");
 		});
 	};
 
