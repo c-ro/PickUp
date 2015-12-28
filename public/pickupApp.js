@@ -10,7 +10,18 @@ angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 			controller: 'ListsCtrl',
 			resolve: {
 				listsPromise: ['lists', function (lists){
+					console.log("lists state");
 					return lists.getAll();
+				}]
+			}
+		})
+		.state('items', {
+			url: '/items',
+			templateUrl: 'views/items.html',
+			controller: 'ItemsCtrl',
+			resolve: {
+				itemsPromise: ['items', function (items){
+					return items.getAll();
 				}]
 			}
 		})
@@ -19,19 +30,9 @@ angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 			templateUrl: 'views/list.html',
 			controller: 'ListCtrl',
 			resolve: {
-				list: ['$stateParams', 'lists', function($stateParams, lists) {
-					return lists.getList($stateParams.id);
+				listPromise: ['$stateParams', 'list', function($stateParams, list) {
+					return list.getList($stateParams.id);
 				}],
-				itemsPromise: ['items', function (items){
-					return items.getAll();
-				}]
-			},
-		})
-		.state('items', {
-			url: '/items',
-			templateUrl: 'views/items.html',
-			controller: 'ItemsCtrl',
-			resolve: {
 				itemsPromise: ['items', function (items){
 					return items.getAll();
 				}]

@@ -1,8 +1,7 @@
- angular.module('pickUp')
-
+angular.module('pickUp')
 .controller('ItemsCtrl', ['$scope', '$http', '$filter', 'ngDialog', 'items', 'alerts', 'lists',
 
-	function($scope, $http, $filter, ngDialogs, items, alerts, lists) {
+	function($scope, $http, $filter, ngDialog, items, alerts, lists) {
 
 	$scope.alerts = alerts;
 	$scope.items = items.items;

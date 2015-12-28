@@ -1,9 +1,9 @@
 <h3 class="list-header">{{ list.name }}</h3>
 <table class="table table-condensed">
-	<tr item ng-repeat="item in items | orderBy: ['category','price * qty'] " ng-class="item.category || 'none'" ng-show="hideCart || !inCart(item)"></tr>
+	<tr item ng-repeat="item in list.items | orderBy: ['category','price * qty'] " ng-class="item.category || 'none'" ng-show="hideCart || !inCart(item)"></tr>
 	<tr>
 		<td>
-			<button class="btn" ng-click="addToListDialog(list)">Add to List</button> <!-- ui-sref="items" -->
+			<button class="btn" ng-click="addToListDialog(list)">Add to List</button>
 		</td>
 	</tr>
 </table>

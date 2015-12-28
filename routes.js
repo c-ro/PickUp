@@ -5,7 +5,6 @@ module.exports = function(app){
 	// GET ALL ITEMS
 	app.get('/items', function (req, res) {
 		Item.find(function (err, docs){
-			console.log(docs);
 			res.json(docs);
 		});
 	});
@@ -13,8 +12,6 @@ module.exports = function(app){
 	// GET SINGLE ITEM
 	app.get('/items/:id', function (req, res) {
 		var item = req.params.id;
-		console.log(item);
-
 		Item.findOne({'_id': item }, function(err, item){
 			if (err){
 				console.log("GET single item ERROR: " + err);
@@ -23,6 +20,7 @@ module.exports = function(app){
 			}
 		});
 	});
+
 	// POST NEW ITEM
 	app.post('/items', function(req, res){
 		var item = new Item(req.body);
@@ -35,36 +33,34 @@ module.exports = function(app){
 			}
 		});
 	});
+
 	// DELETE SINGLE ITEM
 	app.delete('/items/:id', function(req, res){
 		var item = req.params.id;
-
 		Item.remove({"_id": item}, function (err, item){
 			res.json(item);
 		});
 	});
+
 	// EDIT SINGLE ITEM
 	app.put('/items/:id', function (req, res) {
-
 		Item.findByIdAndUpdate(req.params.id, {$set: req.body}, function(err, item){
 			if (err){
 				console.log(err);
 			}
-
 			res.send(item);
 		});
 	});
+
 	// ADD PURCHASE TO ITEM
 	app.put('/items/purchase/:id', function (req, res) {
 		Item.findByIdAndUpdate(req.params.id, {$push: {"purchases": req.body}},  {safe: true, upsert: true, new : true}, function(err, item){
-			
-			if (err){
-				console.log(err);
-			}
+			if (err){console.log(err);}
 
 			res.send(item);
 		});
 	});
+
 	// REMOVE PURCHASE FROM ITEM
 	app.put('/purchase/remove/:id/:date', function(req, res){
 		Item.update( {"_id": req.params.id}, { $pull: { purchases: { date: req.params.date } } }, function (err, item){
@@ -72,7 +68,7 @@ module.exports = function(app){
 		});
 	});
 
-	// GET LIST LIST
+	// GET LIST of LISTS
 	app.get('/lists', function (req, res, err) {
 		List.find(function (err, docs){
 			res.json(docs);
@@ -98,13 +94,15 @@ module.exports = function(app){
 			.populate('items')
 			.exec(function (err, list) {
 				if (err){
-					return handleError(err);
+					console.log(err);
+					return res.json(err);
 				} else {
 					res.json(list);
 				}
 		});
 	});
-	//DELETE SINGLE LISt
+
+	//DELETE SINGLE LIST
 	app.delete('/lists/:id', function(req, res){
 		var list = req.params.id;
 
@@ -112,15 +110,9 @@ module.exports = function(app){
 			res.json(list);
 		});
 	});
-	// DELETE ITEM FROM LIST
-	app.put('/list/remove/:list/:item', function(req, res){
-		List.update( {"_id": req.params.list}, { $pull: { items: req.params.item } }, function (err, item){
-			res.json(item);
-		});
-	});
+
 	//ADD ITEM TO LIST
 	app.put('/lists/add/:id', function (req, res) {
-			console.log(req);
 		List.findByIdAndUpdate(req.params.id, {$addToSet: {"items": req.body}},  {safe: true, upsert: true, new : true}, function(err, item){
 			console.log("server. . .");
 			if (err){
@@ -130,4 +122,12 @@ module.exports = function(app){
 			}
 		});
 	});
+
+	// DELETE ITEM FROM LIST
+	app.put('/list/remove/:list/:item', function(req, res){
+		List.update( {"_id": req.params.list}, { $pull: { items: req.params.item } }, function (err, item){
+			res.json(item);
+		});
+	});
+
 };
