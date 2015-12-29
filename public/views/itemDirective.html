@@ -1,12 +1,7 @@
-<td class="crossout" ng-click="crossout()">&#x02A00</td>
+<td ng-show="$state.includes('list')" class="crossout" ng-click="crossout()">&#x02A00</td>
 <td ng-click="editDialog(item)">{{item.name || item}}</td>
-<!-- <td>{{item.qty}}</td>
-<td>{{item.price}}</td> -->
 <td ng-click="editDialog(item)">{{item.qty * item.price | currency}}</td>
-<td ng-click="deleteItem(item._id)">&#x02A2F</td>
-<td ng-click="removeItemFromList(item)">-</td>
+<!-- actions -->
+<td ng-show="$state.includes('items')" ng-click="deleteItem(item._id)">&#x02A2F</td>
+<td ng-show="$state.includes('list')" ng-click="removeItemFromList(item)">-</td>
 <td ng-click="addToList(item)">+</td>
-<!-- <td ng-click="deleteItem(item._id)">&#x02A2F</td> -->
-<!-- <td ng-click="alert('farts')">></td> -->
-<!-- <td><button class="btn btn-warning" ng-click="inputDialog(item)">edit</button></td> -->
-<!-- <td><button class="btn btn-success" ng-click="purchaseItem(item)">$</button></td> -->

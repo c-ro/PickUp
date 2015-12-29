@@ -1,5 +1,9 @@
 angular.module('pickUp', ['ui.router', 'ui.bootstrap', 'ngDialog'])
 
+.run(function ($state, $rootScope) {
+	$rootScope.$state = $state;
+})
+
 .config(['$stateProvider', '$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider) {
 

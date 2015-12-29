@@ -92,21 +92,4 @@ angular.module('pickUp')
 		items.deletePurchase(purchase);
 	};
 
-	$scope.cart = [];
-	$scope.hideCart = true;
-
-	$scope.toggleCart = function (item){
-		var index = $scope.cart.indexOf(item);
-		if(index === -1){
-			$scope.cart.push(item);
-		} else {
-			$scope.cart.splice(index, 1);
-		}
-		$scope.$apply();
-	};
-
-	$scope.inCart = function (item) {
-		return $scope.cart.indexOf(item) > -1;
-	};
-
 }]);
