@@ -2,7 +2,7 @@
     <tr item ng-repeat="item in newItems | orderBy: ['category','price * qty'] " ng-class="item.category || 'none'" ng-show="hideCart || !inCart(item)"></tr>
     <tr>
         <td>
-            <button class="btn" ui-sref="items" ng-click="closeThisDialog()">New Item</button> <!-- ui-sref="items" -->
+            <button class="btn" ui-sref="items" ng-click="closeThisDialog();">new item</button> <!-- ui-sref="items" -->
         </td>
     </tr>
 </table>

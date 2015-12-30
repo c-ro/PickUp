@@ -1,33 +1,52 @@
  angular.module('pickUp')
- .controller('ListCtrl', ['$scope', '$http', 'ngDialog', 'list', 'items',
-	function($scope, $http, ngDialog, list, items) {
+ .controller('ListCtrl', ['$scope', '$http', '$rootScope', '$timeout', 'ngDialog', 'list', 'items', 'categories',
+	function($scope, $http, $rootScope, $timeout, ngDialog, list, items, categories) {
 	$scope.list = list.list;
 	$scope.newItems = items.items;
-
+	$scope.categories = categories;
+	$scope.dialog = false;
+	
+	// CRUDing logic
 	$scope.addToListDialog = function(currentList){
 		ngDialog.open({
 			template: 'views/add-to-list-dialog.html',
-			scope: $scope,
-			data: { list: currentList }
+			scope: $scope
 		});
 	};
 
 	$scope.addToList = function(item){
 		list.addItemToList(item, function(res){
-			console.log("add to list");
 		});
 	};
 
 	$scope.removeItemFromList = function(item){
 		list.removeItemFromList(item, function(res){
-			console.log("remove from list");
 		});
 	};
+
+
+	$rootScope.$on('ngDialog.opened', function (e, $dialog) {
+		$scope.dialog = true;
+	});
+
+	$rootScope.$on('ngDialog.closing', function (e, $dialog) {
+		$timeout(function(){
+		$scope.dialog = false;
+		});
+
+	});
+
+
+	// Sort/Filter Logic
+
+	$scope.sortType = 'price * qty';
+	$scope.sortReverse = false;
+	$scope.sortSearch = '';
 
 	// View Modes Logic
 
 	$scope.currentMode = 0;
-	$scope.viewMode = ["both", "list", "cart"];
+	$scope.viewMode = ["all", "cart", "list"];
 
 	$scope.nextMode = function(){
 		if($scope.currentMode === 2){
@@ -38,17 +57,11 @@
 	};
 
 	$scope.mode = function(item){
-		if($scope.viewMode[$scope.currentMode] === 'cart' && $scope.inCart(item)){
-			return true;
-		}
+		if($scope.viewMode[$scope.currentMode] === 'all'){ return true; }
 
-		if($scope.viewMode[$scope.currentMode] === 'both'){
-			return true;
-		}
+		if($scope.viewMode[$scope.currentMode] === 'cart' && $scope.inCart(item)){ return true; }
 
-		if($scope.viewMode[$scope.currentMode] === 'list' && !$scope.inCart(item)){
-			return true;
-		}
+		if($scope.viewMode[$scope.currentMode] === 'list' && !$scope.inCart(item)){ return true; }
 	};
 
 	// Cart Logic 

@@ -1,7 +1,7 @@
-<td ng-show="$state.includes('list')" class="crossout" ng-click="crossout()">&#x02A00</td>
+<td ng-show="$state.includes('list') && dialog === false" class="crossout" ng-click="crossout()">&#x02A00</td>
 <td ng-click="editDialog(item)">{{item.name || item}}</td>
 <td ng-click="editDialog(item)">{{item.qty * item.price | currency}}</td>
 <!-- actions -->
 <td ng-show="$state.includes('items')" ng-click="deleteItem(item._id)">&#x02A2F</td>
-<td ng-show="$state.includes('list')" ng-click="removeItemFromList(item)">-</td>
-<td ng-click="addToList(item)">+</td>
+<td ng-show="$state.includes('list') && !dialog" ng-click="removeItemFromList(item)">-</td>
+<td ng-show="$state.includes('items') || dialog" ng-click="addToList(item)">+</td>

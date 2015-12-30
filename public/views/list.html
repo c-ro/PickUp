@@ -3,11 +3,11 @@
 <table class="table main-table">
 	<tr>
 		<th ng-click="nextMode()"> <i class="fa fa-eye"></i> {{ viewMode[currentMode] }}</th>
-		<th>item</th>
-		<th>subtotal</th>
+		<th ng-click="sortType = 'name'; sortReverse = !sortReverse">item</th>
+		<th ng-click="sortType = 'price * qty'; sortReverse = !sortReverse">subtotal</th>
 		<th colspan="3">&#8988 actions &#8989</th>
 	</tr>
-	<tr item ng-repeat="item in list.items | orderBy: ['category','price * qty']" ng-class="item.category || 'none'" ng-show="mode(item)"></tr>
+	<tr item ng-repeat="item in list.items | orderBy:sortType:sortReverse" ng-class="item.category || 'none'" ng-show="mode(item)"></tr>
 	<tr>
 		<td colspan="1">list total:<br>{{ listTotal(list) | currency}}</td>
 		<td colspan="1">cart total:<br>{{ listTotal(cart) | currency}}</td>
@@ -15,7 +15,7 @@
 		<td colspan="3"></td>
 	</tr>
 	<tr>
-		<td colspan="6" ng-click="inputDialog()">
+		<td colspan="6" ng-click="addToListDialog()">
 			<button class="btn btn-block">add item</button>
 		</td>
 	</tr>

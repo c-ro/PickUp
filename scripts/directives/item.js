@@ -25,8 +25,13 @@ angular.module('pickUp')
 			$(row).hide();
 		};
 
+		var pressed = function (){
+			$(itemAction).toggleClass('pressed-action');
+		};
+
 		$(itemActions).on('click', hide);
 
+		$(itemActions).on('click', pressed)
 
 	};
 
