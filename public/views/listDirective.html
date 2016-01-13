@@ -1,8 +1,8 @@
 <td>
-	<a ui-sref='list({id: list._id})'>{{ list.name }}</a>
+	{{ list.date | date: 'MM/dd/yyyy' }}
 </td>
 <td>
-	{{ list._id }}
+	<a ui-sref='list({id: list._id})'>{{ list.name }}</a>
 </td>
 <td ng-click="deleteList(list)">
 	X
