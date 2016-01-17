@@ -1,7 +1,10 @@
  angular.module('pickUp')
  .controller('ListCtrl', ['$scope', '$http', '$rootScope', '$timeout', 'ngDialog', 'list', 'items', 'categories',
+	
 	function($scope, $http, $rootScope, $timeout, ngDialog, list, items, categories) {
+	
 	$scope.list = list.list;
+	$scope.item = {};
 	$scope.newItems = items.items;
 	$scope.categories = categories;
 	$scope.dialog = false;
@@ -24,16 +27,29 @@
 		});
 	};
 
+	$scope.addItem = function(input){
+		items.addItem(input);
+		this.closeThisDialog();
+		$scope.item = {};
+	};
+
+	$scope.addSingleItem = function() {
+		ngDialog.open({
+			template: 'views/input-dialog.html',
+			scope: $scope
+		});
+	};
 
 	$rootScope.$on('ngDialog.opened', function (e, $dialog) {
 		$scope.dialog = true;
 	});
 
 	$rootScope.$on('ngDialog.closing', function (e, $dialog) {
-		$timeout(function(){
-		$scope.dialog = false;
-		});
-
+		if ($dialog[0].id === 'ngdialog1') {
+			$timeout(function(){
+				$scope.dialog = false;
+			});
+		}
 	});
 
 

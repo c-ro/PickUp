@@ -330,6 +330,10 @@ header .header-content .header-content-inner p {
     padding-left: 0;
 }
 
+button:active {
+    background-color: dodgerblue;
+}
+
 .btn-default {
     border-color: #fff;
     color: #222;

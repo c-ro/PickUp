@@ -18,7 +18,6 @@
 }
 
 #labels-container {
-  border: 5px solid black;
   display: -webkit-inline-flex; /* Safari */
   display: inline-flex;
   justify-content: space-between;

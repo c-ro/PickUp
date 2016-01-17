@@ -1,4 +1,4 @@
-<td ng-show="$state.includes('list') && dialog === false" class="crossout" ng-click="crossout()">&#x02A00</td>
+<td ng-show="!dialog" class="crossout" ng-click="crossout()">&#x02A00</td>
 <td ng-click="editDialog(item)">{{item.name || item}}</td>
 <td ng-click="editDialog(item)">{{item.qty * item.price | currency}}</td>
 <!-- actions -->
