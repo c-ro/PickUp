@@ -40,15 +40,15 @@
 		});
 	};
 
+// ITEM DIRECTIVE action toggles
 	$rootScope.$on('ngDialog.opened', function (e, $dialog) {
 		$scope.dialog = true;
 	});
 
 	$rootScope.$on('ngDialog.closing', function (e, $dialog) {
-		if ($dialog[0].id === 'ngdialog1') {
-			$timeout(function(){
+		if ($dialog[0].id.indexOf('ngdialog') > -1) {
 				$scope.dialog = false;
-			});
+				$scope.$apply();
 		}
 	});
 
@@ -60,7 +60,6 @@
 	$scope.sortSearch = '';
 
 	// View Modes Logic
-
 	$scope.currentMode = 0;
 	$scope.viewMode = ["all", "cart", "list"];
 
