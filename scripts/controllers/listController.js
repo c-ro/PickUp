@@ -6,9 +6,18 @@
 	$scope.list = list.list;
 	$scope.item = {};
 	$scope.newItems = items.items;
-	$scope.addQueue = [];
 	$scope.categories = categories;
 	$scope.dialog = false;
+
+	/// CRUD QUEUEING
+	$scope.addQueue = [];
+	$scope.removeQueue = [];
+
+	$scope.processQueue = function(httpFunc, array){
+		array.forEach(function(item){
+			httpFunc(item);
+		});
+	};
 	
 	// CRUDing logic
 	$scope.addToListDialog = function(currentList){
@@ -28,10 +37,8 @@
 		}
 	};
 
-	$scope.processQueue = function(array){
-		array.forEach(function(item){
-			list.addItemToList(item, function(res){
-			});
+	$scope.addItemToList = function(item){
+		list.addItemToList(item, function(res){
 		});
 	};
 
@@ -62,7 +69,11 @@
 		if ($dialog[0].id.indexOf('ngdialog') > -1) {
 				$scope.dialog = false;
 				$scope.$apply();
-				$scope.processQueue($scope.addQueue);
+				
+				if($scope.addQueue.length > 0){
+					$scope.processQueue($scope.addItemToList, $scope.addQueue);
+					$scope.addQueue = [];
+				}
 		}
 	});
 
