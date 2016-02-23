@@ -468,3 +468,16 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #222;
 }
+
+.highlight{
+    border: 1px solid grey;
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
+.action:active {
+    background-color: #ddd;
+    -webkit-box-shadow:inset 0px 0px 15px 5px dodgerblue;
+    -moz-box-shadow:inset 0px 0px 15px 5px dodgerblue;
+    box-shadow:inset 0px 0px 15px 5px dodgerblue;
+}

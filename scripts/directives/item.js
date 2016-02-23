@@ -19,16 +19,10 @@ angular.module('pickUp')
 
 		};
 
-		var greyOut = function() {
-			$(row).css("border", "1px solid grey");
-			$(row).css("background-color", "rgba(255,255,255,0.25)");
-			$(row).css("color", "white");		
-		};
-
-
 		$(crossout).on('click', strikeOut);
+
 		$(itemActions).click(function(){
-			greyOut();
+			$(row).toggleClass("highlight");
 		});
 
 	};
