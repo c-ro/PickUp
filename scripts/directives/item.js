@@ -6,7 +6,7 @@ angular.module('pickUp')
 		var row = angular.element(element.children());
 		var itemName = angular.element(element.children()[1]);
 		var itemSubtotal = angular.element(element.children()[2]);
-		var itemActions = angular.element(element.children()[3]);
+		var itemActions = angular.element(element.children()[5]);
 		var content = [itemName, itemSubtotal, itemActions];
 
 		var strikeOut = function(){
@@ -19,19 +19,17 @@ angular.module('pickUp')
 
 		};
 
+		var greyOut = function() {
+			$(row).css("border", "1px solid grey");
+			$(row).css("background-color", "rgba(255,255,255,0.25)");
+			$(row).css("color", "white");		
+		};
+
+
 		$(crossout).on('click', strikeOut);
-
-		var hide = function() {
-			$(row).hide();
-		};
-
-		var pressed = function (){
-			$(itemAction).toggleClass('pressed-action');
-		};
-
-		$(itemActions).on('click', hide);
-
-		$(itemActions).on('click', pressed)
+		$(itemActions).click(function(){
+			greyOut();
+		});
 
 	};
 
