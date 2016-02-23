@@ -6,6 +6,7 @@
 	$scope.list = list.list;
 	$scope.item = {};
 	$scope.newItems = items.items;
+	$scope.addQueue = [];
 	$scope.categories = categories;
 	$scope.dialog = false;
 	
@@ -18,7 +19,19 @@
 	};
 
 	$scope.addToList = function(item){
-		list.addItemToList(item, function(res){
+		$scope.index = $scope.addQueue.indexOf(item);
+		
+		if($scope.index > -1){
+			$scope.addQueue.splice($scope.index);
+		} else {
+			$scope.addQueue.push(item);
+		}
+	};
+
+	$scope.processQueue = function(array){
+		array.forEach(function(item){
+			list.addItemToList(item, function(res){
+			});
 		});
 	};
 
@@ -49,12 +62,11 @@
 		if ($dialog[0].id.indexOf('ngdialog') > -1) {
 				$scope.dialog = false;
 				$scope.$apply();
+				$scope.processQueue($scope.addQueue);
 		}
 	});
 
-
 	// Sort/Filter Logic
-
 	$scope.sortType = 'price * qty';
 	$scope.sortReverse = false;
 	$scope.sortSearch = '';
